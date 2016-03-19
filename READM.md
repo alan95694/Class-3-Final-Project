@@ -14,14 +14,12 @@ Directions for new users:
 
 
 User required modifications to run_analysis.R
-
 The user must modify hard coded paths listed in this file.  Paths should
 specify where raw source data is on the local machine and where tidy
 data should be saved to.
 
 
 run_analysis.R
-
 File loads raw data, subsets it to terms containing the mean and 
 standard deviations.  The mean of these channels are then calculated
 on a per-user and per-activity basis.  This aggregate data 
