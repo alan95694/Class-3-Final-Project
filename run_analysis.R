@@ -6,12 +6,11 @@ run_analysis <- function() {
     # 
     
     library(plyr)
- 
-    
+
     # --- Specify where data files are ---
-    rootFolder <- "E:/CourseRA/DataScienceSpecialization/Class3_GettingCleaningData/week_4/EndOfClassProject/UCI HAR Dataset/"
-    outputFile <- "E:/CourseRA/DataScienceSpecialization/Class3_GettingCleaningData/week_4/EndOfClassProject/tidyData.txt"
-    
+    rootFolder <- paste0(getwd(), "/UCI HAR Dataset/")
+    outputFile <- paste0(getwd(), "/tidyData.txt")
+
     ## Common files to both test and training folders
     actLabelsFile   <- paste0(rootFolder, "activity_labels.txt") # names of activities; 1-6, WALKING-LAYING-ETC
     colNamesFile    <- paste0(rootFolder, "features.txt")        # 562 col names of what is within data files
@@ -58,7 +57,7 @@ run_analysis <- function() {
     
     iMeanStd <- union( grep("-mean", tolower(colNames_raw$V2)), 
                        grep("-std", tolower(colNames_raw$V2)) )
-
+    
     # form new data frame of only mean and std terms
     x_AccData_MeanStd   <- x_AccData[, iMeanStd]
     colNames_MeanStd    <- colNames_raw$V2[iMeanStd]
@@ -68,7 +67,7 @@ run_analysis <- function() {
     
     # apply activity names to activity rows
     desActNameVec <- join(y_ActLblData, actlabel_raw)
-
+    
     # apply activity names into numerical data set x_AccData_MeanStd
     desActName_AccData_MeanStd <- cbind(desActNameVec$V2, x_AccData_MeanStd)
     
@@ -79,7 +78,7 @@ run_analysis <- function() {
     names(desActName_AccData_MeanStd)[1] <- "Activity"
     
     names(desActName_AccData_MeanStd)[2:(length(colNames_MeanStd)+1)] <- colNames_MeanStd
-        
+    
     desActName_AccData_MeanStd <- cbind(subjectData, desActName_AccData_MeanStd)
     names(desActName_AccData_MeanStd)[1] <- "SubjectNumber"
     
@@ -88,9 +87,9 @@ run_analysis <- function() {
     ##          each activity and each subject.
     nc = NCOL(desActName_AccData_MeanStd)
     dActName_aggMeanStd <- aggregate( desActName_AccData_MeanStd[,3:nc], 
-                            list(desActName_AccData_MeanStd$SubjectNumber, 
-                                 desActName_AccData_MeanStd$Activity),
-                            mean)
+                                      list(desActName_AccData_MeanStd$SubjectNumber, 
+                                           desActName_AccData_MeanStd$Activity),
+                                      mean)
     # Apply col names
     names(dActName_aggMeanStd)[1:2] <- list("SubjectNumber", "Activity")
     
@@ -99,13 +98,12 @@ run_analysis <- function() {
     badNames    <- names(dActName_aggMeanStd[3:nc])
     betterNames <- paste0(badNames, "_aggMean")
     names(dActName_aggMeanStd)[3:nc] <- betterNames
-
+    
     ## --- Export data, asked for in the introduction.  
     
-    write.csv(dActName_aggMeanStd, outputFile,
-              append    = FALSE, 
-              row.names = FALSE)
-
+    write.table(dActName_aggMeanStd, outputFile,
+                row.names = FALSE)
+    
     print("end of run_analysis.R")
     return(TRUE)
 }
