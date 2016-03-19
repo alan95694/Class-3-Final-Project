@@ -15,16 +15,14 @@ SubjectNumber: Human participant identification number 1-30
 Activity: Activity performed by participant, (walking, laying, etc)  
 
 Content  
-	>> Variable names were appended to but not modified from the source data, see source
-		documentation for full explanation of variable names.
-	>> No unit or coordinate transformations were performed, all units remain in g 
-		as specified in the original data set.
-	>> "_aggMean" was appended to indicate that the channel represents the aggregate
-		mean of the source data channel.
+	>> Variable names were appended to but not modified from the source data, see source  
+		documentation for full explanation of variable names.  
+	>> No unit or coordinate transformations were performed, all units remain in g   
+		as specified in the original data set.  
+	>> "_aggMean" was appended to indicate that the channel represents the aggregate  
+		mean of the source data channel.  
 
-Data within the output file "tidyData.txt" represent the aggregated mean of 
-the mean and standard deviation from the source data files for each 
-subject for a given activity.
+Data within the output file "tidyData.txt" represent the aggregated mean of the mean and standard deviation from the source data files for each subject for a given activity.
 
 
 
