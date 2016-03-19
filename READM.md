@@ -7,7 +7,7 @@ Chris W. 3/19/2016
 Directions for new users:
 
 1) Download data from sources listed in CodeBook.md  
-2) Extract data into wokring folder that contains run_analysis.R
+2) Extract data into wokring folder that contains run_analysis.R  
 3) Execute run_analysis.R  
 
 run_analysis.R  
