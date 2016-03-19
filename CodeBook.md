@@ -12,6 +12,7 @@ Variables in the output file "tidyData.txt"
 SubjectNumber: Human participant identification number 1-30
 Activity: Activity performed by participant, (walking, laying, etc)
 Content
+
 	>> Variable names were appended to but not modified from the source data, see source
 		documentation for full explanation of variable names.
 	>> No unit or coordinate transformations were performed, all units remain in g 
